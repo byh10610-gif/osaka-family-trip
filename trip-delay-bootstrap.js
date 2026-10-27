@@ -1,0 +1,5 @@
+(function(){'use strict';
+try{window.TripDelayActiveFamily=localStorage.getItem('osaka-delay-active-family-v9')}catch(e){}
+try{var current=new URL(location.href),s=current.searchParams.get('timing');if(!s)return;if(s.length>18000)throw Error();var p=JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,'+').replace(/_/g,'/')))));if(p.v!==1)throw Error();var profiles=TripDelayCore.cleanProfiles(p.profiles);if(p.family==='말짱가족'||p.family==='채지,짱효')window.TripDelayActiveFamily=p.family;window.TripDelayImported={state:TripDelayCore.cleanState(p.state),profiles:profiles};try{if(profiles)localStorage.setItem('osaka-pass-groups-v7',JSON.stringify(profiles));if(window.TripDelayActiveFamily)localStorage.setItem('osaka-delay-active-family-v9',window.TripDelayActiveFamily);if(p.rain==='balanced'||p.rain==='easy')localStorage.setItem('osaka-rain-day3-v1',p.rain);else localStorage.removeItem('osaka-rain-day3-v1')}catch(e){}window.TripDelayImportMessage='공유 링크의 시간 설정을 반영했습니다';current.searchParams.delete('timing');history.replaceState(null,'',current.href)}catch(e){window.TripDelayImportInvalid=true}
+})();
+
